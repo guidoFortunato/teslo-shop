@@ -33,7 +33,7 @@ export default function CartPage() {
                   height={100}
                   style={{
                     width: "100px",
-                    height: "100px"
+                    height: "100px",
                   }}
                   alt={product.title}
                   className="mr-5 rounded"
@@ -65,7 +65,12 @@ export default function CartPage() {
               <span className="mt-5 text-right">$ 100</span>
             </div>
             <div className="mt-5 mb-2 w-full">
-              <Link className="flex btn-primary justify-center" href="/checkout/address">Checkout</Link>
+              <Link
+                className="flex btn-primary justify-center"
+                href="/checkout/address"
+              >
+                Checkout
+              </Link>
             </div>
           </div>
         </div>
