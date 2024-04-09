@@ -1,4 +1,4 @@
-export default function ShopLayout({
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
