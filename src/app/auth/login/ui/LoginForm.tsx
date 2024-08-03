@@ -1,16 +1,18 @@
 "use client";
 
+import { useEffect } from "react";
 import { authenticate } from "@/actions";
 import clsx from "clsx";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { IoInformationOutline } from "react-icons/io5";
+import { useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
   const [state, dispatch] = useFormState(authenticate, undefined);
-  const router = useRouter()
+  const searchParams = useSearchParams()
+  const params = searchParams.get("origin")
+ 
 
   console.log({state})
   
@@ -18,8 +20,8 @@ export const LoginForm = () => {
   useEffect(() => {
     
     if (state === "Success") {
-      //redireccionar
-      router.replace("/")
+      if(!!params) return window.location.replace(params)
+      window.location.replace("/")
     }
     
   }, [state]);

@@ -5,12 +5,12 @@ export default async function AuthLayout({ children }: {
   children: React.ReactNode;
 }) {
 
-  const session = await auth()
-  console.log({sessionAuthLayout: session})
+  // const session = await auth()
+  // console.log({sessionAuthLayout: session})
   
-  if( session?.user ){
-    redirect("/")
-  }
+  // if( session?.user ){
+  //   redirect("/")
+  // }
 
 
 
