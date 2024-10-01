@@ -14,7 +14,7 @@ export const LoginForm = () => {
   const params = searchParams.get("origin")
  
 
-  console.log({state})
+  // console.log({state})
   
   
   useEffect(() => {

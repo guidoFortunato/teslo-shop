@@ -1,3 +1,4 @@
 export * from "./address.interface";
 export * from "./country.interfaces";
+export * from "./paypal.interface";
 export * from "./product.interface";

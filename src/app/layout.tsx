@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { inter } from "../config/fonts";
+import { Providers } from "@/components";
 
 import "./globals.css";
-import { Provider } from "@/components";
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Provider>{children}</Provider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
