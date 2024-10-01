@@ -1,7 +1,12 @@
 "use client";
 
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { CreateOrderData, CreateOrderActions, OnApproveData, OnApproveActions } from "@paypal/paypal-js";
+import {
+  CreateOrderData,
+  CreateOrderActions,
+  OnApproveData,
+  OnApproveActions,
+} from "@paypal/paypal-js";
 import { paypalCheckPayment, setTransactionId } from "@/actions";
 
 interface Props {
@@ -32,7 +37,7 @@ export const PayPalButton = ({ amount, orderId }: Props) => {
         {
           invoice_id: orderId,
           amount: {
-            value: `${ roundedAmount }`,
+            value: `${roundedAmount}`,
           },
         },
       ],
@@ -40,33 +45,28 @@ export const PayPalButton = ({ amount, orderId }: Props) => {
 
     // console.log({ transactionId });
 
-    const { ok } = await setTransactionId(orderId, transactionId)
+    const { ok } = await setTransactionId(orderId, transactionId);
 
     if (!ok) {
-      throw new Error("No se pudo actualizar la orden")
+      throw new Error("No se pudo actualizar la orden");
     }
 
     return transactionId;
   };
 
-  const onApprove = async(data: OnApproveData, actions: OnApproveActions) => {
-  
+  const onApprove = async (data: OnApproveData, actions: OnApproveActions) => {
+    const details = await actions.order?.capture();
 
-    const details = await actions.order?.capture()
+    if (!details) return;
 
-    if (!details) return
+    console.log({ details });
 
-    console.log({details})
-
-    await paypalCheckPayment( details.id )
-
-     
-  }
+    await paypalCheckPayment(details.id);
+  };
 
   return (
-    <PayPalButtons
-      createOrder={createOrder}
-      onApprove={onApprove}
-    />
+    <div className="relative z-0">
+      <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
+    </div>
   );
 };
