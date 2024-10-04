@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { IoCardOutline } from "react-icons/io5";
+import { changeUserRole } from "@/actions";
 import { User } from "@/interfaces";
 
 interface Props {
@@ -48,8 +47,8 @@ export const UsersTable = ({ users }: Props) => {
             <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
               <select
                 value={user.role}
-                className="text-sm text-gray-900"
-                onChange={ e => console.log(e.target.value) }
+                className="text-sm text-gray-900 w-full p-2"
+                onChange={ e => changeUserRole(user.id, e.target.value) }
               >
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
